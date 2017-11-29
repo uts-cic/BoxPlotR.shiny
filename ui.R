@@ -66,7 +66,6 @@ shinyUI(pageWithSidebar(
 					radioButtons("datapointType", "", list("Default"=0, "Bee swarm"=1, "Jittered"=2)),
 					textInput("pointColors", "Colour(s):", value=c("black"))					
 				),
-
 # Commenting out the below code, and adding to server.R "input$whiskerType==0"
 #				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
 #				conditionalPanel(condition="input.whiskerDefinition",
@@ -84,6 +83,7 @@ shinyUI(pageWithSidebar(
 #					Spear - whiskers extend to minimum and maximum values; 
 #					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
 #				),
+					 
 				checkboxInput("showNrOfPoints", "Display number of data points", FALSE),
 				checkboxInput("addMeans", "Add sample means", FALSE),
 				conditionalPanel(condition="input.addMeans",
@@ -135,7 +135,7 @@ shinyUI(pageWithSidebar(
 				h5("X-axis range (eg., '0,10'):"),
 				textInput("xlimit", "", value="")
 			),
-			checkboxInput("logScale", "Change to log scale (only for data >0)", FALSE),			
+#			checkboxInput("logScale", "Change to log scale (only for data >0)", FALSE),			
 			h5("Add grid: "),
 			radioButtons("addGrid", "", list("None" = 0, "X & Y"= 1, "X only" = 2, "Y only" = 3))
 #			numericInput("boxWidth", "Width of boxes:", value=1),
