@@ -142,7 +142,9 @@ shinyServer(function(input, output, session) {
 		# *** 1) Vertical boxplots ***
 		par(las=1)
 		if(as.numeric(input$myOrientation)==0){
-			if(input$logScale==FALSE){ myLog="" } else { myLog="y"} # log scale for y-axis?
+#			if(input$logScale==FALSE){ myLog="" } else { myLog="y"} # log scale for y-axis?
+			input$logScale==FALSE
+			if(input$logScale==FALSE){ myLog="" } 
 			# *** Generate boxplot ***
 			if(input$plotType=='0'){
 				boxplot(plotDataM, col=myColours, ylab=input$myYlab, xlab=input$myXlab, ylim=myLim, log=myLog,
