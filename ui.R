@@ -36,20 +36,20 @@ shinyUI(pageWithSidebar(
 		),
 		conditionalPanel(condition="input.tabs1=='Data visualization'",
 
-			radioButtons("plotType", "", list("Boxplot"=0, "Other"=1)),
-			conditionalPanel(condition="input.plotType=='1'",
-				radioButtons("otherPlotType", "", list("Violin plot"=0, "Bean plot"=1)),
-				textInput("myOtherPlotColours", "Colour(s):", value=c("light grey, white")),
-				conditionalPanel(condition="input.otherPlotType=='0'",
-					helpText("Colour of the 'violin area'"),
-					textInput("violinBorder", "Border colour:", value=c("grey"))			
-				),
-				conditionalPanel(condition="input.otherPlotType=='1'",
-					helpText("up to 4 colours can be specified: area of the beans, lines inside the bean, lines outside the bean, and average line per bean"),
-					textInput("beanBorder", "Border colour:", value=c("grey")),	
-					radioButtons("beanPlotMedianMean", "Display: ", list("Median"=0, "Mean"=1))
-				)
-			),
+#			radioButtons("plotType", "", list("Boxplot"=0, "Other"=1)),
+#			conditionalPanel(condition="input.plotType=='1'",
+#				radioButtons("otherPlotType", "", list("Violin plot"=0, "Bean plot"=1)),
+#				textInput("myOtherPlotColours", "Colour(s):", value=c("light grey, white")),
+#				conditionalPanel(condition="input.otherPlotType=='0'",
+#					helpText("Colour of the 'violin area'"),
+#					textInput("violinBorder", "Border colour:", value=c("grey"))			
+#				),
+#				conditionalPanel(condition="input.otherPlotType=='1'",
+#					helpText("up to 4 colours can be specified: area of the beans, lines inside the bean, lines outside the bean, and average line per bean"),
+#					textInput("beanBorder", "Border colour:", value=c("grey")),	
+#					radioButtons("beanPlotMedianMean", "Display: ", list("Median"=0, "Mean"=1))
+#				)
+#			),
 
 			h4("Plot options"),
 			checkboxInput("plotDataPoints", "Minimum number of data points", FALSE),
