@@ -9,11 +9,13 @@ shinyServer(function(input, output, session) {
 	library(beanplot)	 
 	source("boxplot_stats_Function.R")
 	source("BoxPlotR_functions.R")	
+	library(googlesheets)
 	
 	observe({
 		if (input$clearText_button == 0) return()
 		isolate({ updateTextInput(session, "myData", label = ",", value = "") })
 	})
+	
 	# *** Read in data matrix ***
 	dataM <- reactive({
 		if(input$dataInput==1){
@@ -29,7 +31,7 @@ shinyServer(function(input, output, session) {
 			# Get the separator
 			mySep<-switch(input$fileSepDF, '1'=",",'2'="\t",'3'=";", '4'="") #list("Comma"=1,"Tab"=2,"Semicolon"=3)
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
-		} else { # To be looked into again - for special case when last column has empty entries in some rows
+		} else if(input$dataInput==3){ # To be looked into again - for special case when last column has empty entries in some rows
 			if(is.null(input$myData)) {return(NULL)} 
 			tmp<-matrix(strsplit(input$myData, "\n")[[1]])
 			mySep<-switch(input$fileSepP, '1'=",",'2'="\t",'3'=";")
@@ -40,7 +42,11 @@ shinyServer(function(input, output, session) {
 				myRow<-as.numeric(strsplit(paste(tmp[i],mySep,mySep,sep=""), mySep)[[1]])
 				data[i-1,]<-myRow[-length(myRow)]
 			}
-			data<-data.frame(data)		
+		} else { # To be looked into again - for special case when last column has empty entries in some rows
+			if(is.null(input$myData)) {return(NULL)} 
+				data<-gs_read(input$gsheetURL, ws = input$gsheetws) 
+			}
+			data<-data.frame(data)	
 		}
 		return(data)
 	})
