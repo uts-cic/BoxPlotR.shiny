@@ -55,10 +55,10 @@ shinyUI(pageWithSidebar(
 			),
 
 			h4("Plot options"),
-#			checkboxInput("plotDataPoints", "Minimum number of data points", FALSE),
-#			conditionalPanel(condition="input.plotDataPoints",			
-#				numericInput("nrOfDataPoints", "Data point limit: ", value=5, min=5)
-#			),
+			checkboxInput("plotDataPoints", "Minimum number of data points", FALSE),
+			conditionalPanel(condition="input.plotDataPoints",			
+				numericInput("nrOfDataPoints", "Data point limit: ", value=5, min=5)
+			),
 
 			conditionalPanel(condition="input.plotType=='0'",
 				checkboxInput("showDataPoints", "Add data points", FALSE),
