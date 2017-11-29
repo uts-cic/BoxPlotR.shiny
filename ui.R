@@ -35,7 +35,7 @@ shinyUI(pageWithSidebar(
 				tags$textarea(id="myData", rows=10, cols=5, ""),
 				actionButton('clearText_button','Clear data'),
 				radioButtons("fileSepP", "Separator:", list("Comma"=1,"Tab"=2,"Semicolon"=3)
-			),
+			)
 #			conditionalPanel(condition="input.dataInput=='4'",
 				#ideally build in gs_auth so they can access private sheets
 #				h5("Do you have a google sheet with data in it?"),
