@@ -18,8 +18,9 @@ shinyUI(pageWithSidebar(
 #		),
 	conditionalPanel(condition="input.tabs1=='Data upload'",
 			h4("Enter data"),
-			radioButtons("dataInput", "", list("Load sample data"=1,"Upload file"=2,"Paste data"=3)),
-			conditionalPanel(condition="input.dataInput=='1'",
+#			radioButtons("dataInput", "", list("Load sample data"=1,"Upload file"=2,"Paste data"=3)),
+			radioButtons("dataInput", "", list("Load sample data"=1,"Upload file"=2,"Paste data"=3,"Gsheets"=4)),
+			 conditionalPanel(condition="input.dataInput=='1'",
 				h5("Load sample data:"),
 				radioButtons("sampleData", "Load sample data", list("Example 1 (100,76,16,76,41 data points)"=1,"Example 2 (3 columns with 100 data points)"=2))
 			),
@@ -36,14 +37,14 @@ shinyUI(pageWithSidebar(
 				actionButton('clearText_button','Clear data'),
 				radioButtons("fileSepP", "Separator:", list("Comma"=1,"Tab"=2,"Semicolon"=3))
 			)
-),
-#			conditionalPanel(condition="input.dataInput=='4'",
+#),
+			conditionalPanel(condition="input.dataInput=='4'",
 				#ideally build in gs_auth so they can access private sheets
-#				h5("Do you have a google sheet with data in it?"),
-#				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
-#				textInput("gsheetws", "Google Sheet worksheet name", value = "", width = '80%')
-#			)
-#		),
+				h5("Do you have a google sheet with data in it?"),
+				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
+				textInput("gsheetws", "Google Sheet worksheet name", value = "", width = '80%')
+			)
+		),
 		conditionalPanel(condition="input.tabs1=='Data visualization'",
 #			radioButtons("plotType", "", list("Boxplot"=0, "Other"=1)),
 			radioButtons("plotType", "", list("Boxplot"=0)),
