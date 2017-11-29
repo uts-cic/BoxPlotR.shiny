@@ -66,22 +66,22 @@ shinyUI(pageWithSidebar(
 					radioButtons("datapointType", "", list("Default"=0, "Bee swarm"=1, "Jittered"=2)),
 					textInput("pointColors", "Colour(s):", value=c("black"))					
 				),
-#				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
-#				conditionalPanel(condition="input.whiskerDefinition",
-#					radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
-#					conditionalPanel(condition="input.whiskerType=='0'",
-#						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
-#					),
-#					conditionalPanel(condition="input.whiskerType=='1'",
-#						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
-#					),
-#					conditionalPanel(condition="input.whiskerType=='2'",
-#						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
-#					),
-#					HTML('<p>Tukey - whiskers extend to data points that are less than 1.5 x <a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a> away from 1st/3rd <a href=:"http://en.wikipedia.org/wiki/Quartile">quartile</a>; 
-#					Spear - whiskers extend to minimum and maximum values; 
-#					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
-#				),
+				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
+				conditionalPanel(condition="input.whiskerDefinition",
+					radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
+					conditionalPanel(condition="input.whiskerType=='0'",
+						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
+					),
+					conditionalPanel(condition="input.whiskerType=='1'",
+						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
+					),
+					conditionalPanel(condition="input.whiskerType=='2'",
+						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
+					),
+					HTML('<p>Tukey - whiskers extend to data points that are less than 1.5 x <a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a> away from 1st/3rd <a href=:"http://en.wikipedia.org/wiki/Quartile">quartile</a>; 
+					Spear - whiskers extend to minimum and maximum values; 
+					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
+				),
 				checkboxInput("showNrOfPoints", "Display number of data points", FALSE),
 				checkboxInput("addMeans", "Add sample means", FALSE),
 				conditionalPanel(condition="input.addMeans",
@@ -93,13 +93,13 @@ shinyUI(pageWithSidebar(
 							
 				checkboxInput("myVarwidth", "Variable width boxes", FALSE),
 				helpText("Widths of boxes are proportional to square-roots of the number of observations."),
-#				checkboxInput("myNotch", "Add notches", FALSE),
-#				HTML('<p>+/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) - gives roughly 95% confidence that two medians differ (Chambers et al., 1983)</p>'),
-#				conditionalPanel(condition="input.myNotch",
-#					HTML('<p>The notches are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) and represent the 95% <a href="http://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> for each median. 
-#					Non-overlapping notches give roughly 95% confidence that two medians differ, ie, in 19 out of 20 cases the population 
-#					medians (estimated based on the samples) are in fact different (Chambers et al., 1983).</p>')
-#				),
+				checkboxInput("myNotch", "Add notches", FALSE),
+				HTML('<p>+/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) - gives roughly 95% confidence that two medians differ (Chambers et al., 1983)</p>'),
+				conditionalPanel(condition="input.myNotch",
+					HTML('<p>The notches are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) and represent the 95% <a href="http://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> for each median. 
+					Non-overlapping notches give roughly 95% confidence that two medians differ, ie, in 19 out of 20 cases the population 
+					medians (estimated based on the samples) are in fact different (Chambers et al., 1983).</p>')
+				),
 				textInput("myColours", "Colour(s):", value=c("light grey, white")),
 				helpText("Colours in HEX format can be chosen on http://colorbrewer2.org/")
 			),
@@ -159,23 +159,23 @@ shinyUI(pageWithSidebar(
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
 			), 
 			# Figure legend 
-#			tabPanel("Figure legend template", h5("Box plot description for figure legend:"), textOutput("FigureLegend"),
-#				h5("Further information to be added to the figure legend:"), p("What do the box plots show, explain colours if used."),
-#				downloadButton("downloadBoxplotData", "Download box plot data as .CSV file"),
-#				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
-#				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
-#				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
-#			),
+			tabPanel("Figure legend template", h5("Box plot description for figure legend:"), textOutput("FigureLegend"),
+				h5("Further information to be added to the figure legend:"), p("What do the box plots show, explain colours if used."),
+				downloadButton("downloadBoxplotData", "Download box plot data as .CSV file"),
+				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
+				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
+				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
+			),
 			# News
-#			tabPanel("News",
-#                h5("January 11, 2017"),
-#                HTML('<p>If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk">boxplot.bio.ed.ac.uk</a>.</p>'),
-#                h5("July 23, 2014"),
-#     			p("Upgrade to R version 3.1 and shiny-server 1.2"),
-#				h5("March 18, 2014"), 
-#				p("The user can now choose the color of the data points. There is also an additional option for data point display: data points can now be randomly jittered. 
-#				A small bug in label display was fixed. Log scales can now be used.")
-#			),			
+			tabPanel("News",
+                h5("January 11, 2017"),
+                HTML('<p>If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk">boxplot.bio.ed.ac.uk</a>.</p>'),
+                h5("July 23, 2014"),
+     			p("Upgrade to R version 3.1 and shiny-server 1.2"),
+				h5("March 18, 2014"), 
+				p("The user can now choose the color of the data points. There is also an additional option for data point display: data points can now be randomly jittered. 
+				A small bug in label display was fixed. Log scales can now be used.")
+			),			
 			# FAQ 
 			tabPanel("FAQ",
 				h5("Q: I have trouble editing the graphic files."), 
