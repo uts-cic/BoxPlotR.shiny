@@ -39,8 +39,8 @@ shinyUI(pageWithSidebar(
 			conditionalPanel(condition="input.dataInput=='4'",
 				#ideally build in gs_auth so they can access private sheets
 				h5("Do you have a google sheet with data in it?"),
-				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
-				textInput("gsheetws", "Google Sheet worksheet name", value = "", width = '80%')
+			#	textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
+			#	textInput("gsheetws", "Google Sheet worksheet name", value = "", width = '80%')
 			)
 		),
 		conditionalPanel(condition="input.tabs1=='Data visualization'",
