@@ -17,7 +17,7 @@ shinyServer(function(input, output, session) {
 	})
 	
 	# *** Read in data matrix ***
-	dataM <- reactive({
+dataM <- reactive({
 		if(input$dataInput==1){
 			if(input$sampleData==1){
 				data<-read.table("Boxplot_testData2.csv", sep=",", header=TRUE, fill=TRUE)			
@@ -44,10 +44,10 @@ shinyServer(function(input, output, session) {
 				myRow<-as.numeric(strsplit(paste(tmp[i],mySep,mySep,sep=""), mySep)[[1]])
 				data[i-1,]<-myRow[-length(myRow)]
 			}
-			data<-data.frame(data)	
+			data<-data.frame(data)		
 		}
 		return(data)
-	})
+})
 	
 	# *** The plot dimensions ***
 	heightSize <- reactive ({ input$myHeight })
