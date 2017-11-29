@@ -1,4 +1,3 @@
-
 shinyUI(pageWithSidebar(
 
 	headerPanel("BoxPlotR: a web-tool for generation of box plots",
@@ -67,15 +66,15 @@ shinyUI(pageWithSidebar(
 				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
 				conditionalPanel(condition="input.whiskerDefinition",
 					radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
-					conditionalPanel(condition="input.whiskerType=='0'",
-						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
-					),
-					conditionalPanel(condition="input.whiskerType=='1'",
-						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
-					),
-					conditionalPanel(condition="input.whiskerType=='2'",
-						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
-					),
+#					conditionalPanel(condition="input.whiskerType=='0'",
+#						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
+#					),
+#					conditionalPanel(condition="input.whiskerType=='1'",
+#						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
+#					),
+#					conditionalPanel(condition="input.whiskerType=='2'",
+#						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
+#					),
 					HTML('<p>Tukey - whiskers extend to data points that are less than 1.5 x <a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a> away from 1st/3rd <a href=:"http://en.wikipedia.org/wiki/Quartile">quartile</a>; 
 					Spear - whiskers extend to minimum and maximum values; 
 					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
@@ -134,7 +133,7 @@ shinyUI(pageWithSidebar(
 			checkboxInput("logScale", "Change to log scale (only for data >0)", FALSE),			
 			h5("Add grid: "),
 			radioButtons("addGrid", "", list("None" = 0, "X & Y"= 1, "X only" = 2, "Y only" = 3))
-			numericInput("boxWidth", "Width of boxes:", value=1),
+#			numericInput("boxWidth", "Width of boxes:", value=1),
 		)	
 	),
   
@@ -235,3 +234,4 @@ shinyUI(pageWithSidebar(
 		)
 	)
 ))
+
