@@ -147,8 +147,7 @@ dataM <- reactive({
 		# *** 1) Vertical boxplots ***
 		par(las=1)
 		if(as.numeric(input$myOrientation)==0){
-#			if(input$
-			Scale==FALSE){ myLog="" } else { myLog="y"} # log scale for y-axis?
+			if(input$Scale==FALSE){ myLog="" } else { myLog="y"} # log scale for y-axis?
 			#input$logScale==FALSE
 			#if(input$logScale==FALSE){ 
 			myLog="" 
