@@ -192,23 +192,23 @@ shinyUI(pageWithSidebar(
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
 			), 
 			# Figure legend 
-			tabPanel("Figure legend template", h5("Box plot description for figure legend:"), textOutput("FigureLegend"),
-				h5("Further information to be added to the figure legend:"), p("What do the box plots show, explain colours if used."),
-				downloadButton("downloadBoxplotData", "Download box plot data as .CSV file"),
-				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
-				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
-				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
-			),
+#			tabPanel("Figure legend template", h5("Box plot description for figure legend:"), textOutput("FigureLegend"),
+#				h5("Further information to be added to the figure legend:"), p("What do the box plots show, explain colours if used."),
+#				downloadButton("downloadBoxplotData", "Download box plot data as .CSV file"),
+#				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
+#				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
+#				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
+#			),
 			# News
-			tabPanel("News",
-                h5("January 11, 2017"),
-                HTML('<p>If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk">boxplot.bio.ed.ac.uk</a>.</p>'),
-                h5("July 23, 2014"),
-     			p("Upgrade to R version 3.1 and shiny-server 1.2"),
-				h5("March 18, 2014"), 
-				p("The user can now choose the color of the data points. There is also an additional option for data point display: data points can now be randomly jittered. 
-				A small bug in label display was fixed. Log scales can now be used.")
-			),			
+#			tabPanel("News",
+#                h5("January 11, 2017"),
+#                HTML('<p>If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk">boxplot.bio.ed.ac.uk</a>.</p>'),
+#                h5("July 23, 2014"),
+#     			p("Upgrade to R version 3.1 and shiny-server 1.2"),
+#				h5("March 18, 2014"), 
+#				p("The user can now choose the color of the data points. There is also an additional option for data point display: data points can now be randomly jittered. 
+#				A small bug in label display was fixed. Log scales can now be used.")
+#			),			
 			# FAQ 
 			tabPanel("FAQ",
 				h5("Q: I have trouble editing the graphic files."), 
@@ -229,6 +229,9 @@ shinyUI(pageWithSidebar(
 				If you are not familiar with the software packages there are detailed examples for 
 				<a href="http://www.howtogeek.com/122641/how-to-forward-ports-to-a-virtual-machine-and-use-it-as-a-server/">vbox</a> and 
 				<a href="http://blog.fardad.com/2012/06/vmware-player-and-custom-nat-port-map.html">vmware</a>.</p>')
+				h5("Q: Who made this amazing thing?"),
+				p("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), " labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
+				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ". It has been slightly simplified from the original by ", a("Simon Knight", href="http://uts.edu.au/simon.knight"), ".")
 #				h5("Q:"), 
 #				p("A:")
 			),			
