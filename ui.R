@@ -141,40 +141,6 @@ shinyUI(pageWithSidebar(
   
 	mainPanel(
 		tabsetPanel(
-			# Welcome tab
-			tabPanel("About",
-				HTML('
-				<br>
-				<p> If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk"> boxplot.bio.ed.ac.uk</a>.</p>
-				
-				<p>This application was developed with Nature Methods as described in this <a href="http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2837.html">editorial</a> and this 
-				<a href="http://blogs.nature.com/methagora/2014/01/bring-on-the-box-plots-boxplotr.html">blog entry</a>. Nature methods also dedicated a 
-				<a href="http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2807.html">Points of View</a> and a <a href="http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2813.html">Points of Significance</a> 
-				column to box plots. We hope that you find the <a href= "http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2811.html">BoxPlotR</a> useful and we welcome suggestions 
-				for additional features by our users. We would like to thank everyone who has made constructive suggestions so far. We will document the addition of new features in the News tab.</p>
-				<p>This application allows users to generate customized <a href="http://en.wikipedia.org/wiki/Box_plot">box plots</a> in a number of variants based on their data. A data matrix 
-				can be uploaded as a file or pasted into the application. Basic box plots are generated based on the data and can be modified to include 
-				additional information. Additional features become available when checking that option.  Information about sample sizes can be represented 
-				by the width of each box where the widths are proportional to the square roots of the number of observations n. Notches can be added to the 
-				boxes. These are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) which gives roughly 95% confidence that two medians are different. It is also possible to define 
-				the whiskers based on the ideas of Spear and Tukey. Additional options of data visualization (violin and bean plots) reveal more information 
-				about the underlying data distribution. Plots can be labeled, customized (colors, dimensions, orientation) and exported as eps, pdf and svg files.</p>
-				<p>BoxPlotR code can be run locally via <a href="https://github.com/VizWizard/BoxPlotR.shiny/blob/master/README.md">GitHub</a>. You can also download and install it as a virtual machine (see <a href="https://github.com/VizWizard/BoxPlotR.shiny/blob/master/README.md">GitHub</a> and FAQs for details). </p>'),
-				
-				h5("Software references"),
-				HTML('<p>R Development Core Team. <i><a href="http://www.r-project.org/">R</a>:  A Language and Environment for Statistical Computing.</i> R Foundation for Statistical Computing, Vienna (2013) <br>
-				RStudio and Inc. <i><a href="http://www.rstudio.com/shiny/">shiny</a>: Web Application Framework for R.</i> R package version 0.5.0 (2013) <br>
-				Adler, D. <i><a href="http://cran.r-project.org/web/packages/vioplot/index.html">vioplot</a>: Violin plot.</i> R package version 0.2 (2005)<br>
-				Eklund, A. <i><a href="http://cran.r-project.org/web/packages/beeswarm/index.html"> beeswarm</a>: The bee swarm plot, an alternative to stripchart.</i> R package version 0.1.5 (2012)<br>
-				Kampstra, P. <i><a href="http://cran.r-project.org/web/packages/beanplot/index.html">Beanplot</a>: A Boxplot Alternative for Visual Comparison of Distributions.</i> Journal of Statistical Software, Code Snippets 28(1). 1-9 (2008) <br>
-				Neuwirth, E. <i><a href="http://cran.r-project.org/web/packages/RColorBrewer/index.html">RColorBrewer</a>: ColorBrewer palettes.</i> R package version 1.0-5. (2011)</p>'),
-				h5("Further references"),
-				HTML('<p> Hadley Wickham and Lisa Stryjewski: <a href="http://vita.had.co.nz/papers/boxplots.pdf"> 40 years of boxplots </a></p>'),
-				HTML('<p> Kristin Potter: <a href="http://pages.uoregon.edu/kpotter/publications/potter-2006-MPSI.pdf">Methods for Presenting Statistical Information: The Box Plot</a></p>'),
-				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
-				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
-				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
-			),
 			# Data upload tab
 			tabPanel("Data upload", tableOutput("filetable"),
 				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
@@ -231,7 +197,39 @@ shinyUI(pageWithSidebar(
 				<a href="http://blog.fardad.com/2012/06/vmware-player-and-custom-nat-port-map.html">vmware</a>.</p>'),
 				h5("Q: Who made this amazing thing?"),
 				p("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), " labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
-				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ". It has been slightly simplified from the original by ", a("Simon Knight", href="http://uts.edu.au/simon.knight"), ".")
+				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ". It has been slightly simplified from the original by ", a("Simon Knight", href="http://uts.edu.au/simon.knight"), "."),
+				h5("Q: Can you tell me more?!"),
+				 HTML('
+				<br>
+				<p> If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk"> boxplot.bio.ed.ac.uk</a>.</p>
+				
+				<p>This application was developed with Nature Methods as described in this <a href="http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2837.html">editorial</a> and this 
+				<a href="http://blogs.nature.com/methagora/2014/01/bring-on-the-box-plots-boxplotr.html">blog entry</a>. Nature methods also dedicated a 
+				<a href="http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2807.html">Points of View</a> and a <a href="http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2813.html">Points of Significance</a> 
+				column to box plots. We hope that you find the <a href= "http://www.nature.com/nmeth/journal/v11/n2/full/nmeth.2811.html">BoxPlotR</a> useful and we welcome suggestions 
+				for additional features by our users. We would like to thank everyone who has made constructive suggestions so far. We will document the addition of new features in the News tab.</p>
+				<p>This application allows users to generate customized <a href="http://en.wikipedia.org/wiki/Box_plot">box plots</a> in a number of variants based on their data. A data matrix 
+				can be uploaded as a file or pasted into the application. Basic box plots are generated based on the data and can be modified to include 
+				additional information. Additional features become available when checking that option.  Information about sample sizes can be represented 
+				by the width of each box where the widths are proportional to the square roots of the number of observations n. Notches can be added to the 
+				boxes. These are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) which gives roughly 95% confidence that two medians are different. It is also possible to define 
+				the whiskers based on the ideas of Spear and Tukey. Additional options of data visualization (violin and bean plots) reveal more information 
+				about the underlying data distribution. Plots can be labeled, customized (colors, dimensions, orientation) and exported as eps, pdf and svg files.</p>
+				<p>BoxPlotR code can be run locally via <a href="https://github.com/VizWizard/BoxPlotR.shiny/blob/master/README.md">GitHub</a>. You can also download and install it as a virtual machine (see <a href="https://github.com/VizWizard/BoxPlotR.shiny/blob/master/README.md">GitHub</a> and FAQs for details). </p>'),
+				
+				h5("Software references"),
+				HTML('<p>R Development Core Team. <i><a href="http://www.r-project.org/">R</a>:  A Language and Environment for Statistical Computing.</i> R Foundation for Statistical Computing, Vienna (2013) <br>
+				RStudio and Inc. <i><a href="http://www.rstudio.com/shiny/">shiny</a>: Web Application Framework for R.</i> R package version 0.5.0 (2013) <br>
+				Adler, D. <i><a href="http://cran.r-project.org/web/packages/vioplot/index.html">vioplot</a>: Violin plot.</i> R package version 0.2 (2005)<br>
+				Eklund, A. <i><a href="http://cran.r-project.org/web/packages/beeswarm/index.html"> beeswarm</a>: The bee swarm plot, an alternative to stripchart.</i> R package version 0.1.5 (2012)<br>
+				Kampstra, P. <i><a href="http://cran.r-project.org/web/packages/beanplot/index.html">Beanplot</a>: A Boxplot Alternative for Visual Comparison of Distributions.</i> Journal of Statistical Software, Code Snippets 28(1). 1-9 (2008) <br>
+				Neuwirth, E. <i><a href="http://cran.r-project.org/web/packages/RColorBrewer/index.html">RColorBrewer</a>: ColorBrewer palettes.</i> R package version 1.0-5. (2011)</p>'),
+				h5("Further references"),
+				HTML('<p> Hadley Wickham and Lisa Stryjewski: <a href="http://vita.had.co.nz/papers/boxplots.pdf"> 40 years of boxplots </a></p>'),
+				HTML('<p> Kristin Potter: <a href="http://pages.uoregon.edu/kpotter/publications/potter-2006-MPSI.pdf">Methods for Presenting Statistical Information: The Box Plot</a></p>'),
+				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
+				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
+				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
 #				h5("Q:"), 
 #				p("A:")
 			),			
