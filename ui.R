@@ -1,3 +1,6 @@
+useShinyjs()
+
+
 shinyUI(pageWithSidebar(
 
 	headerPanel("BoxPlotR: a web-tool for generation of box plots",
