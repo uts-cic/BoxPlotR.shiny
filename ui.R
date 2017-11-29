@@ -18,7 +18,8 @@ shinyUI(pageWithSidebar(
 #		),
 		conditionalPanel(condition="input.tabs1=='Data upload'",
 			h4("Enter data"),
-			radioButtons("dataInput", "", list("Load sample data"=1,"Upload file"=2,"Paste data"=3,"Google sheets data"=4)),
+			radioButtons("dataInput", "", list("Load sample data"=1,"Upload file"=2,"Paste data"=3)),
+			#radioButtons("dataInput", "", list("Load sample data"=1,"Upload file"=2,"Paste data"=3,"Google sheets data"=4)),
 			conditionalPanel(condition="input.dataInput=='1'",
 				h5("Load sample data:"),
 				radioButtons("sampleData", "Load sample data", list("Example 1 (100,76,16,76,41 data points)"=1,"Example 2 (3 columns with 100 data points)"=2))
