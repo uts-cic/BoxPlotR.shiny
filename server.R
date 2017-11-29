@@ -113,8 +113,9 @@ shinyServer(function(input, output, session) {
 		datapointCounts<-apply(!apply(plotData, 2, is.na),2,sum) # Count number of valid data points for each sample
 		# Check if columns with few data points should be plotted as points
 
-		# minimum number of points is 4 -> check that nrOfDataPoints is ay least 4		
-		mnp<-max(4,input$nrOfDataPoints)
+		# minimum number of points is 4 -> check that nrOfDataPoints is at least 4		
+#		mnp<-max(4,input$nrOfDataPoints)
+		mnp<-max(4,4)
 		
 		if(input$plotDataPoints==TRUE){
 			#toPlot <- seq(1:ncol(plotData))[datapointCounts>=input$nrOfDataPoints] # samples to barplot
@@ -152,7 +153,7 @@ shinyServer(function(input, output, session) {
 				boxplot(plotDataM, col=myColours, ylab=input$myYlab, xlab=input$myXlab, ylim=myLim, log=myLog,
 					cex.lab=input$cexAxislabel/10, cex.axis=input$cexAxis/10, cex.main=input$cexTitle/10, 
 					main=input$myTitle, sub=input$mySubtitle, horizontal=as.numeric(input$myOrientation), frame=F, 
-					na.rm=TRUE, xaxt="n", range=myRange(), varwidth=input$myVarwidth, notch=input$myNotch) #notch=TRUE
+					na.rm=TRUE, xaxt="n", range=myRange(), varwidth=input$myVarwidth, notch=FALSE) #notch=TRUE
 				axis(1,at=c(1:nrOfSamples), labels=FALSE, cex.axis=input$cexAxis/10) #
 #				mtext(text=colnames(plotData), side=1, at=c(1:nrOfSamples), xpd=TRUE, srt=xaxisLabelAngleNr, cex=input$cexAxis/10)
 				text(x=c(1:nrOfSamples), y=rep(myLim[1]-(myLim[2]-myLim[1])/10,nrOfSamples), labels=colnames(plotData), pos=labelPos, xpd=TRUE, srt=xaxisLabelAngleNr, cex=input$cexAxis/10)
