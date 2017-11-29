@@ -11,6 +11,8 @@ shinyServer(function(input, output, session) {
 	source("BoxPlotR_functions.R")	
 	library(googlesheets)
 	
+	myLog == FALSE
+	
 	observe({
 		if (input$clearText_button == 0) return()
 		isolate({ updateTextInput(session, "myData", label = ",", value = "") })
