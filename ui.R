@@ -1,6 +1,5 @@
-library(shinyjs)
-useShinyjs()
-
+#library(shinyjs)
+#useShinyjs()
 
 shinyUI(pageWithSidebar(
 
@@ -38,8 +37,8 @@ shinyUI(pageWithSidebar(
 				radioButtons("fileSepP", "Separator:", list("Comma"=1,"Tab"=2,"Semicolon"=3))
 			)
 		),
-		conditionalPanel(condition="input.tabs1=='Data visualization'"#,
-
+		conditionalPanel(condition="input.tabs1=='Data visualization'"
+				 #,
 #			radioButtons("plotType", "", list("Boxplot"=0, "Other"=1)),
 #			conditionalPanel(condition="input.plotType=='1'",
 #				radioButtons("otherPlotType", "", list("Violin plot"=0, "Bean plot"=1)),
