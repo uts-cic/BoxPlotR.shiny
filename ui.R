@@ -134,7 +134,8 @@ shinyUI(pageWithSidebar(
 				numericInput("cexAxis", "Axis font size:", value=12)
 			),
 			h5("Orientation of box plots:"),
-			radioButtons("myOrientation", "", list("Vertical"=0, "Horizontal"=1)),
+#			radioButtons("myOrientation", "", list("Vertical"=0, "Horizontal"=1)),
+			 radioButtons("myOrientation", "", list("Vertical"=0)),
 			conditionalPanel(condition="input.myOrientation=='0'",
 				h5("Y-axis range (eg., '0,10'):"),
 				textInput("ylimit", "", value="")
@@ -143,7 +144,7 @@ shinyUI(pageWithSidebar(
 				h5("X-axis range (eg., '0,10'):"),
 				textInput("xlimit", "", value="")
 			),
-#			checkboxInput("logScale", "Change to log scale (only for data >0)", FALSE),			
+			checkboxInput("logScale", "Change to log scale (only for data >0)", FALSE),			
 			h5("Add grid: "),
 			radioButtons("addGrid", "", list("None" = 0, "X & Y"= 1, "X only" = 2, "Y only" = 3))
 #			numericInput("boxWidth", "Width of boxes:", value=1),
