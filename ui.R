@@ -228,7 +228,7 @@ shinyUI(pageWithSidebar(
 				Now you should be able to access the shiny server in a browser on port 127.0.0.1:8080 or your localhost:8080.
 				If you are not familiar with the software packages there are detailed examples for 
 				<a href="http://www.howtogeek.com/122641/how-to-forward-ports-to-a-virtual-machine-and-use-it-as-a-server/">vbox</a> and 
-				<a href="http://blog.fardad.com/2012/06/vmware-player-and-custom-nat-port-map.html">vmware</a>.</p>')
+				<a href="http://blog.fardad.com/2012/06/vmware-player-and-custom-nat-port-map.html">vmware</a>.</p>'),
 				h5("Q: Who made this amazing thing?"),
 				p("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), " labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ". It has been slightly simplified from the original by ", a("Simon Knight", href="http://uts.edu.au/simon.knight"), ".")
