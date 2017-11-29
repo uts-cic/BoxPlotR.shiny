@@ -36,7 +36,7 @@ shinyUI(pageWithSidebar(
 		),
 		conditionalPanel(condition="input.tabs1=='Data visualization'",
 
-#			radioButtons("plotType", "", list("Boxplot"=0, "Other"=1)),
+			radioButtons("plotType", "", list("Boxplot"=0, "Other"=1)),
 #			conditionalPanel(condition="input.plotType=='1'",
 #				radioButtons("otherPlotType", "", list("Violin plot"=0, "Bean plot"=1)),
 #				textInput("myOtherPlotColours", "Colour(s):", value=c("light grey, white")),
