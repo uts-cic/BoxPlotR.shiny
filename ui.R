@@ -135,7 +135,7 @@ shinyUI(pageWithSidebar(
 #			h5("Add grid: "),
 #			radioButtons("addGrid", "", list("None" = 0, "X & Y"= 1, "X only" = 2, "Y only" = 3))
 #			numericInput("boxWidth", "Width of boxes:", value=1),
-#		)	
+		)	
 	),
   
 	mainPanel(
