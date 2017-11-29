@@ -13,9 +13,9 @@ shinyUI(pageWithSidebar(
 	),
   
 	sidebarPanel(
-		conditionalPanel(condition="input.tabs1=='About'",
-			h4("Introduction")
-		),
+#		conditionalPanel(condition="input.tabs1=='About'",
+#			h4("Introduction")
+#		),
 		conditionalPanel(condition="input.tabs1=='Data upload'",
 			h4("Enter data"),
 			radioButtons("dataInput", "", list("Load sample data"=1,"Upload file"=2,"Paste data"=3)),
