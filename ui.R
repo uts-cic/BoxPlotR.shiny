@@ -91,13 +91,13 @@ shinyUI(pageWithSidebar(
 							
 				checkboxInput("myVarwidth", "Variable width boxes", FALSE),
 				helpText("Widths of boxes are proportional to square-roots of the number of observations."),
-#				checkboxInput("myNotch", "Add notches", FALSE),
-#				HTML('<p>+/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) - gives roughly 95% confidence that two medians differ (Chambers et al., 1983)</p>'),
-#				conditionalPanel(condition="input.myNotch",
-#					HTML('<p>The notches are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) and represent the 95% <a href="http://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> for each median. 
-#					Non-overlapping notches give roughly 95% confidence that two medians differ, ie, in 19 out of 20 cases the population 
-#					medians (estimated based on the samples) are in fact different (Chambers et al., 1983).</p>')
-#				),
+				checkboxInput("myNotch", "Add notches", FALSE),
+				HTML('<p>+/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) - gives roughly 95% confidence that two medians differ (Chambers et al., 1983)</p>'),
+				conditionalPanel(condition="input.myNotch",
+					HTML('<p>The notches are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) and represent the 95% <a href="http://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> for each median. 
+					Non-overlapping notches give roughly 95% confidence that two medians differ, ie, in 19 out of 20 cases the population 
+					medians (estimated based on the samples) are in fact different (Chambers et al., 1983).</p>')
+				),
 				textInput("myColours", "Colour(s):", value=c("light grey, white")),
 				helpText("Colours in HEX format can be chosen on http://colorbrewer2.org/")
 			),
@@ -131,10 +131,10 @@ shinyUI(pageWithSidebar(
 				h5("X-axis range (eg., '0,10'):"),
 				textInput("xlimit", "", value="")
 			),
-#			checkboxInput("logScale", "Change to log scale (only for data >0)", FALSE),			
-#			h5("Add grid: "),
-#			radioButtons("addGrid", "", list("None" = 0, "X & Y"= 1, "X only" = 2, "Y only" = 3))
-#			numericInput("boxWidth", "Width of boxes:", value=1),
+			checkboxInput("logScale", "Change to log scale (only for data >0)", FALSE),			
+			h5("Add grid: "),
+			radioButtons("addGrid", "", list("None" = 0, "X & Y"= 1, "X only" = 2, "Y only" = 3))
+			numericInput("boxWidth", "Width of boxes:", value=1),
 		)	
 	),
   
@@ -235,10 +235,3 @@ shinyUI(pageWithSidebar(
 		)
 	)
 ))
-
-
-
-
-
-
-
