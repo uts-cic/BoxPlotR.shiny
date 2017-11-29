@@ -31,9 +31,9 @@ dataM <- reactive({
 			# Get the separator
 			mySep<-switch(input$fileSepDF, '1'=",",'2'="\t",'3'=";", '4'="") #list("Comma"=1,"Tab"=2,"Semicolon"=3)
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
-		} else if{input$dataInput==4){
-			data<-gs_read(input$gsheetURL, ws = input$gsheetws) 
-			if (is.null(input$gsheetURL)) {return(NULL)}
+#		} else if{input$dataInput==4){
+#			data<-gs_read(input$gsheetURL, ws = input$gsheetws) 
+#			if (is.null(input$gsheetURL)) {return(NULL)}
 		} else { # To be looked into again - for special case when last column has empty entries in some rows
 			if(is.null(input$myData)) {return(NULL)} 
 			tmp<-matrix(strsplit(input$myData, "\n")[[1]])
