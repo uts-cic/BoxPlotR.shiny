@@ -66,22 +66,24 @@ shinyUI(pageWithSidebar(
 					radioButtons("datapointType", "", list("Default"=0, "Bee swarm"=1, "Jittered"=2)),
 					textInput("pointColors", "Colour(s):", value=c("black"))					
 				),
-				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
-				conditionalPanel(condition="input.whiskerDefinition",
-					radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
-					conditionalPanel(condition="input.whiskerType=='0'",
-						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
-					),
-					conditionalPanel(condition="input.whiskerType=='1'",
-						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
-					),
-					conditionalPanel(condition="input.whiskerType=='2'",
-						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
-					),
-					HTML('<p>Tukey - whiskers extend to data points that are less than 1.5 x <a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a> away from 1st/3rd <a href=:"http://en.wikipedia.org/wiki/Quartile">quartile</a>; 
-					Spear - whiskers extend to minimum and maximum values; 
-					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
-				),
+
+# Commenting out the below code, and adding to server.R "input$whiskerType==0"
+#				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
+#				conditionalPanel(condition="input.whiskerDefinition",
+#					radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
+#					conditionalPanel(condition="input.whiskerType=='0'",
+#						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
+#					),
+#					conditionalPanel(condition="input.whiskerType=='1'",
+#						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
+#					),
+#					conditionalPanel(condition="input.whiskerType=='2'",
+#						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
+#					),
+#					HTML('<p>Tukey - whiskers extend to data points that are less than 1.5 x <a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a> away from 1st/3rd <a href=:"http://en.wikipedia.org/wiki/Quartile">quartile</a>; 
+#					Spear - whiskers extend to minimum and maximum values; 
+#					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
+#				),
 				checkboxInput("showNrOfPoints", "Display number of data points", FALSE),
 				checkboxInput("addMeans", "Add sample means", FALSE),
 				conditionalPanel(condition="input.addMeans",
