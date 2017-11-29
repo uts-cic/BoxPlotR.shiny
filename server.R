@@ -52,13 +52,17 @@ shinyServer(function(input, output, session) {
 	# *** Determine extent of whisker range ***
 	# whiskerDefinition 0 - Tukey (default), 1 - Spear (min/max, range=0), 2 - Altman (5% and 95% quantiles)
 	# radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
-	myRange <- reactive({
-		if(input$whiskerType==0){myRange<-c(-1.5)} 
-		else if(input$whiskerType==1){myRange<-c(0)} 
-		else if (input$whiskerType==2){myRange<-c(5)}
-		return(myRange)
-	})
+#	myRange <- reactive({
+#		if(input$whiskerType==0){myRange<-c(-1.5)} 
+#		else if(input$whiskerType==1){myRange<-c(0)} 
+#		else if (input$whiskerType==2){myRange<-c(5)}
+#		return(myRange)
+#	})
+#REPLACING the above code, with the below to just hard code Tukey
 	
+	myRange <- reactive({(input$whiskerType==0){myRange<-c(-1.5)} 
+		return(myRange)
+	})	
 	# *** Get boxplot statistics ***
 	boxplotStats <- reactive({
 		return(boxplot(dataM(), na.rm=TRUE, range=myRange(), plot=FALSE))
