@@ -55,10 +55,10 @@ shinyUI(pageWithSidebar(
 			),
 
 			h4("Plot options"),
-			checkboxInput("plotDataPoints", "Minimum number of data points", FALSE),
-			conditionalPanel(condition="input.plotDataPoints",			
-				numericInput("nrOfDataPoints", "Data point limit: ", value=5, min=5)
-			),
+#			checkboxInput("plotDataPoints", "Minimum number of data points", FALSE),
+#			conditionalPanel(condition="input.plotDataPoints",			
+#				numericInput("nrOfDataPoints", "Data point limit: ", value=5, min=5)
+#			),
 
 			conditionalPanel(condition="input.plotType=='0'",
 				checkboxInput("showDataPoints", "Add data points", FALSE),
@@ -66,22 +66,22 @@ shinyUI(pageWithSidebar(
 					radioButtons("datapointType", "", list("Default"=0, "Bee swarm"=1, "Jittered"=2)),
 					textInput("pointColors", "Colour(s):", value=c("black"))					
 				),
-				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
-				conditionalPanel(condition="input.whiskerDefinition",
-					radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
-					conditionalPanel(condition="input.whiskerType=='0'",
-						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
-					),
-					conditionalPanel(condition="input.whiskerType=='1'",
-						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
-					),
-					conditionalPanel(condition="input.whiskerType=='2'",
-						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
-					),
-					HTML('<p>Tukey - whiskers extend to data points that are less than 1.5 x <a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a> away from 1st/3rd <a href=:"http://en.wikipedia.org/wiki/Quartile">quartile</a>; 
-					Spear - whiskers extend to minimum and maximum values; 
-					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
-				),
+#				checkboxInput("whiskerDefinition", "Definition of whisker extent", FALSE),
+#				conditionalPanel(condition="input.whiskerDefinition",
+#					radioButtons("whiskerType", "", list("Tukey"=0, "Spear"=1, "Altman"=2)),
+#					conditionalPanel(condition="input.whiskerType=='0'",
+#						numericInput("TukeyRange", "Define whisker extent (x IQR):", min=0, step=0.5, value=1.5)
+#					),
+#					conditionalPanel(condition="input.whiskerType=='1'",
+#						HTML('<p>Spear - Whiskers extend to minimum and maximum values.</p>')
+#					),
+#					conditionalPanel(condition="input.whiskerType=='2'",
+#						numericInput("AltmanRange", "Define whisker extent in percentiles (ie, '5' means that whiskers extend to 5th and 95th percentile):", min=0, step=0.5, value=5)
+#					),
+#					HTML('<p>Tukey - whiskers extend to data points that are less than 1.5 x <a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a> away from 1st/3rd <a href=:"http://en.wikipedia.org/wiki/Quartile">quartile</a>; 
+#					Spear - whiskers extend to minimum and maximum values; 
+#					Altman - whiskers extend to 5th and 95th percentile (use only if n>40)</p>')
+#				),
 				checkboxInput("showNrOfPoints", "Display number of data points", FALSE),
 				checkboxInput("addMeans", "Add sample means", FALSE),
 				conditionalPanel(condition="input.addMeans",
@@ -93,13 +93,13 @@ shinyUI(pageWithSidebar(
 							
 				checkboxInput("myVarwidth", "Variable width boxes", FALSE),
 				helpText("Widths of boxes are proportional to square-roots of the number of observations."),
-				checkboxInput("myNotch", "Add notches", FALSE),
-				HTML('<p>+/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) - gives roughly 95% confidence that two medians differ (Chambers et al., 1983)</p>'),
-				conditionalPanel(condition="input.myNotch",
-					HTML('<p>The notches are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) and represent the 95% <a href="http://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> for each median. 
-					Non-overlapping notches give roughly 95% confidence that two medians differ, ie, in 19 out of 20 cases the population 
-					medians (estimated based on the samples) are in fact different (Chambers et al., 1983).</p>')
-				),
+#				checkboxInput("myNotch", "Add notches", FALSE),
+#				HTML('<p>+/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) - gives roughly 95% confidence that two medians differ (Chambers et al., 1983)</p>'),
+#				conditionalPanel(condition="input.myNotch",
+#					HTML('<p>The notches are defined as +/-1.58*<a href="http://en.wikipedia.org/wiki/Interquartile_range">IQR</a>/sqrt(n) and represent the 95% <a href="http://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> for each median. 
+#					Non-overlapping notches give roughly 95% confidence that two medians differ, ie, in 19 out of 20 cases the population 
+#					medians (estimated based on the samples) are in fact different (Chambers et al., 1983).</p>')
+#				),
 				textInput("myColours", "Colour(s):", value=c("light grey, white")),
 				helpText("Colours in HEX format can be chosen on http://colorbrewer2.org/")
 			),
