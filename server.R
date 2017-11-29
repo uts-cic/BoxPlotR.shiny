@@ -9,7 +9,7 @@ shinyServer(function(input, output, session) {
 	library(beanplot)	 
 	source("boxplot_stats_Function.R")
 	source("BoxPlotR_functions.R")	
-	library(googlesheets)
+#	library(googlesheets)
 	
 	observe({
 		if (input$clearText_button == 0) return()
