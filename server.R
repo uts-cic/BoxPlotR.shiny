@@ -60,9 +60,10 @@ shinyServer(function(input, output, session) {
 #	})
 #REPLACING the above code, with the below to just hard code Tukey
 	
-	myRange <- reactive({(input$whiskerType==0){myRange<-c(-1.5)} 
+	myRange <- reactive({
+		{myRange<-c(-1.5)}
 		return(myRange)
-	})	
+	})
 	# *** Get boxplot statistics ***
 	boxplotStats <- reactive({
 		return(boxplot(dataM(), na.rm=TRUE, range=myRange(), plot=FALSE))
