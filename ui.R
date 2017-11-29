@@ -55,10 +55,10 @@ shinyUI(pageWithSidebar(
 			),
 
 			h4("Plot options"),
-#			checkboxInput("plotDataPoints", "Minimum number of data points", FALSE),
-#			conditionalPanel(condition="input.plotDataPoints",			
-#				numericInput("nrOfDataPoints", "Data point limit: ", value=5, min=5)
-#			),
+			checkboxInput("plotDataPoints", "Minimum number of data points", FALSE),
+			conditionalPanel(condition="input.plotDataPoints",			
+				numericInput("nrOfDataPoints", "Data point limit: ", value=5, min=5)
+			),
 
 			conditionalPanel(condition="input.plotType=='0'",
 				checkboxInput("showDataPoints", "Add data points", FALSE),
@@ -159,23 +159,23 @@ shinyUI(pageWithSidebar(
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
 			), 
 			# Figure legend 
-			tabPanel("Figure legend template", h5("Box plot description for figure legend:"), textOutput("FigureLegend"),
-				h5("Further information to be added to the figure legend:"), p("What do the box plots show, explain colours if used."),
-				downloadButton("downloadBoxplotData", "Download box plot data as .CSV file"),
-				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
-				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
-				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
-			),
+#			tabPanel("Figure legend template", h5("Box plot description for figure legend:"), textOutput("FigureLegend"),
+#				h5("Further information to be added to the figure legend:"), p("What do the box plots show, explain colours if used."),
+#				downloadButton("downloadBoxplotData", "Download box plot data as .CSV file"),
+#				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
+#				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
+#				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
+#			),
 			# News
-			tabPanel("News",
-                h5("January 11, 2017"),
-                HTML('<p>If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk">boxplot.bio.ed.ac.uk</a>.</p>'),
-                h5("July 23, 2014"),
-     			p("Upgrade to R version 3.1 and shiny-server 1.2"),
-				h5("March 18, 2014"), 
-				p("The user can now choose the color of the data points. There is also an additional option for data point display: data points can now be randomly jittered. 
-				A small bug in label display was fixed. Log scales can now be used.")
-			),			
+#			tabPanel("News",
+#                h5("January 11, 2017"),
+#                HTML('<p>If you experience problems with this boxplot server, there is an alternative BoxPlotR mirror available at <a href="http://boxplot.bio.ed.ac.uk">boxplot.bio.ed.ac.uk</a>.</p>'),
+#                h5("July 23, 2014"),
+#     			p("Upgrade to R version 3.1 and shiny-server 1.2"),
+#				h5("March 18, 2014"), 
+#				p("The user can now choose the color of the data points. There is also an additional option for data point display: data points can now be randomly jittered. 
+#				A small bug in label display was fixed. Log scales can now be used.")
+#			),			
 			# FAQ 
 			tabPanel("FAQ",
 				h5("Q: I have trouble editing the graphic files."), 
