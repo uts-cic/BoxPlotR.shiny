@@ -115,8 +115,7 @@ shinyServer(function(input, output, session) {
 
 		# minimum number of points is 4 -> check that nrOfDataPoints is at least 4		
 #		mnp<-max(4,input$nrOfDataPoints)
-		mnp<-max(4,4)
-		
+		mnp<-4
 		if(input$plotDataPoints==TRUE){
 			#toPlot <- seq(1:ncol(plotData))[datapointCounts>=input$nrOfDataPoints] # samples to barplot
 			plotPoints <- seq(1:nrOfSamples)[datapointCounts<mnp] # samples to plot as points
