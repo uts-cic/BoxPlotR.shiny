@@ -1,7 +1,7 @@
 BoxPlotR
 ========
 
-This is the repository for the Shiny application presented in "BoxPlotR: a web tool for generation of box plots" (Spitzer at al. 2014).
+This is a fork of the repository for the Shiny application presented in "BoxPlotR: a web tool for generation of box plots" (Spitzer at al. 2014). It was edited by sjgknight to provide a slimmed down functionality for some undergraduate teaching. You probably want to use the original.
 
 Installation
 ------------
