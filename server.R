@@ -33,7 +33,7 @@ dataM <- reactive({
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
 		} else if(input$dataInput==4){
 			#gs_auth(new_user=T)
-			gs_auth()
+			#gs_auth()
 			
 			#gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
 			gs_data <- gs_url(input$gsheetURL)
