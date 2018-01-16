@@ -33,12 +33,12 @@ dataM <- reactive({
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
 		} else if(input$dataInput==4){
 			gs_auth(new_user=T)
-			gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
-			data <- data.frame(na.omit(gs_read(gs_data, ws = "US_literacy")))
+			#gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
+			#data <- data.frame(na.omit(gs_read(gs_data, ws = "US_literacy")))
 			#data <- data.frame(write.table(gs_read(gs_data, ws = "US_literacy")))
-			#gs_data <-gs_url(textInput$gsheetURL)
-			#data <- gs_read(gs_data, ws = textInput$gsheetws)
-			#data <- data.frame(write.table(gs_read(textInput$gsheetURL, ws = textIinput$gsheetws)))
+			gs_data <-gs_url(textInput$gsheetURL)
+			data <- gs_read(gs_data, ws = textInput$gsheetws)
+			data <- data.frame(na.omit(gs_read(textInput$gsheetURL, ws = textIinput$gsheetws)))
 			if (is.null(textInput$gsheetURL)) {return(NULL)}
 		} else { # To be looked into again - for special case when last column has empty entries in some rows
 			if(is.null(input$myData)) {return(NULL)} 
