@@ -45,7 +45,7 @@ shinyUI(pageWithSidebar(
 				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
 				textInput("gsheetws", "Google Sheet worksheet name", value = "data", width = '80%'),
 				textInput("ggrouping", "What is the column header for the column(s) you want to group your data by (separate by a '+' sign, e.g. \"Region+Income\")?", value = "Region", width = '80%'),
-				textInput("gdataID", "What is the column header for the column with your data in it?", value = "2011", width = '80%')
+				textInput("gdataID", "What is the column header for the column with your data in it? (NOTE: you can't use numbers as column names, e.g. if the column is 1985, edit it in google to Y1985)", value = "2011", width = '80%')
 #				numericInput("gID", "What column number is the data in? (Column 'A' is '1', etc)", value = ", min = NA, max = NA, step = NA, width = '80%')
 				#,submitButton(text = "Apply Changes", icon = ("refresh"), width = '80%')
 			)
@@ -161,7 +161,8 @@ shinyUI(pageWithSidebar(
 			# Data upload tab
 			tabPanel("Data upload", tableOutput("filetable"),
 				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
-				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
+				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This version was slightly modified (to add google spreadsheets functionality, and simplify some options for teaching) by ", a("Simon Knight", href="http://sjgknight.com"),  
+				". This application uses the ", 
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
 			),
 			# Boxplot tab
@@ -171,9 +172,10 @@ shinyUI(pageWithSidebar(
 				plotOutput("boxPlot", height='100%', width='100%'),
 				h4("Box plot statistics"), tableOutput("boxplotStatsTable"),
 				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
-				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This application uses the ", 
+				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This version was slightly modified (to add google spreadsheets functionality, and simplify some options for teaching) by ", a("Simon Knight", href="http://sjgknight.com"),  
+				". This application uses the ", 
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
-			), 
+			),
 			# Figure legend 
 #			tabPanel("Figure legend template", h5("Box plot description for figure legend:"), textOutput("FigureLegend"),
 #				h5("Further information to be added to the figure legend:"), p("What do the box plots show, explain colours if used."),
