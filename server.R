@@ -40,9 +40,7 @@ dataM <- reactive({
 
 			#data <- data.frame(gs_read(gs_data, ws = "US_literacy"))
 			data <- data.frame(gs_read(gs_data, ws = input$gsheetws))
-			
-			ifelse(is.number(input$gdataID), input$gdataID <- paste0("`",input$gdataID,"`", input$gdataID <- input$gdataID))
-			
+						
 			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(4)), value~Region)
 			#data <- dcast(melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID)), as.formula(paste0("value~",input$ggrouping))) #NOTE replace 'region' with a variable, and '4' with a range variable from input
 			data <- melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID))
