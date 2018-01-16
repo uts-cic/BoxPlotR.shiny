@@ -32,7 +32,10 @@ dataM <- reactive({
 			mySep<-switch(input$fileSepDF, '1'=",",'2'="\t",'3'=";", '4'="") #list("Comma"=1,"Tab"=2,"Semicolon"=3)
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
 		} else if(input$dataInput==4){
-			data<-gs_read(textInput$gsheetURL, ws = textIinput$gsheetws) 
+			gs_auth(new_user=T)
+			gs_data <-gs_url(textInput$gsheetURL)
+			data <- gs_read(gs_data, ws = textInput$gsheetws)
+			#data<-gs_read(textInput$gsheetURL, ws = textIinput$gsheetws) 
 			if (is.null(textInput$gsheetURL)) {return(NULL)}
 		} else { # To be looked into again - for special case when last column has empty entries in some rows
 			if(is.null(input$myData)) {return(NULL)} 
