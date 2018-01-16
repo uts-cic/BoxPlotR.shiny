@@ -43,7 +43,7 @@ shinyUI(pageWithSidebar(
 				#ideally build in gs_auth so they can access private sheets
 				h5("Do you have a google sheet with data in it?"),
 				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
-				textInput("gsheetws", "Google Sheet worksheet name", value = "", width = '80%')
+				textInput("gsheetws", "Google Sheet worksheet name", value = "", width = '80%'),
 				submitButton(text = "Apply Changes", icon = NULL, width = NULL)
 			)
 ),
