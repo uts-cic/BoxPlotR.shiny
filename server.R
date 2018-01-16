@@ -34,10 +34,12 @@ dataM <- reactive({
 		} else if(input$dataInput==4){
 			#gs_auth(new_user=T)
 			#gs_auth() #works fine on local, but not hosted shiny
+			options("googlesheets.webapp.client_id" = "YOURIDHERE.apps.googleusercontent.com")
+			options("googlesheets.webapp.redirect_uri" = "https://sjgknight.shinyapps.io/boxplotr/")
+			
 			gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
 			redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
 			access_type = "online", approval_prompt = "auto")
-			
 			##########################################################################################
 			  ## Make a button to link to Google auth screen
 			  ## If auth_code is returned then don't show login button
