@@ -47,9 +47,10 @@ dataM <- reactive({
 			data$nID <- row.names(data)
 			data <- dcast(data, as.formula(paste0("value+nID~",input$ggrouping)))
 			
-			n <- ncol(data)
-			data <- data[,-c(1:2,n)]
-			
+			#n <- ncol(data)
+			#data <- data[,-c(1:2,n)]
+			data <- data[,-c(1:2)]
+
 			#data <- data.frame(write.table(gs_read(gs_data, ws = "US_literacy")))
 			#data <- data.frame(na.omit(gs_read(input$gsheetURL, ws = input$gsheetws)))
 			if (is.null(input$gsheetURL)) {return(NULL)}
