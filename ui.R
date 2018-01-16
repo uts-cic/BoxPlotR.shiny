@@ -42,6 +42,7 @@ shinyUI(pageWithSidebar(
 			conditionalPanel(condition="input.dataInput=='4'",
 				#ideally build in gs_auth so they can access private sheets
 				h5("Do you have a google sheet with data in it?"),
+				UiOutput("loginButton"),
 				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
 				textInput("gsheetws", "Google Sheet worksheet name", value = "data", width = '80%'),
 				textInput("ggrouping", "What is the column header for the column(s) you want to group your data by (separate by a '+' sign, e.g. \"Region+Income\")?", value = "Region", width = '80%'),
