@@ -162,7 +162,7 @@ shinyUI(pageWithSidebar(
 			tabPanel("Data upload", tableOutput("filetable"),
 				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
 				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This version was slightly modified (to add google spreadsheets functionality, and simplify some options for teaching) by ", a("Simon Knight", href="http://sjgknight.com"),  
-				". This application uses the ", 
+				". This version was slightly simplified, with googlesheets support added, by ", a("Simon Knight", href="https://sjgknight.com/"), "This application uses the ", 
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
 			),
 			# Boxplot tab
@@ -173,7 +173,7 @@ shinyUI(pageWithSidebar(
 				h4("Box plot statistics"), tableOutput("boxplotStatsTable"),
 				h6("This application was created by the ", a("Tyers", href="http://tyers.iric.ca/"), " and ", a("Rappsilber", href="http://rappsilberlab.org/"), 
 				" labs. Please send bugs and feature requests to Michaela Spitzer (michaela.spitzer(at)gmail.com) and Jan Wildenhain (jan.wildenhain(at)gmail.com). This version was slightly modified (to add google spreadsheets functionality, and simplify some options for teaching) by ", a("Simon Knight", href="http://sjgknight.com"),  
-				". This application uses the ", 
+				". This version was slightly simplified, with googlesheets support added, by ", a("Simon Knight", href="https://sjgknight.com/"), "This application uses the ", 
 				a("shiny package from RStudio", href="http://www.rstudio.com/shiny/"), ".")
 			),
 			# Figure legend 
