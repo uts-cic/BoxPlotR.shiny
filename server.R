@@ -33,7 +33,7 @@ dataM <- reactive({
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
 		} else if(input$dataInput==4){
 			gs_auth(new_user=T)
-			gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1F7E2x6DSdI4JblevawymBxiOQaxJcUWg_piIC-3oDrk")
+			gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
 			data <- gs_read(gs_data, ws = "US_literacy")
 			#gs_data <-gs_url(textInput$gsheetURL)
 			#data <- gs_read(gs_data, ws = textInput$gsheetws)
