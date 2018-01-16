@@ -44,7 +44,7 @@ dataM <- reactive({
 			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(4)), value~Region)
 			#data <- dcast(melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID)), as.formula(paste0("value~",input$ggrouping))) #NOTE replace 'region' with a variable, and '4' with a range variable from input
 			data$nID <- row.names(data)
-			data <- melt(data, id.vars=c(input$ggrouping, num), measure.vars=c(input$gdataID))
+			data <- melt(data, id.vars=c(input$ggrouping, nID), measure.vars=c(input$gdataID))
 			data <- dcast(data, as.formula(paste0("value~",input$ggrouping)))
 			
 			n <- ncol(data)
