@@ -36,7 +36,7 @@ dataM <- reactive({
 			gs_auth()
 			gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
 			data <- data.frame(gs_read(gs_data, ws = "US_literacy"))
-			data <- melt(data, id.vars=c("Region"), measure.vars=c(3))
+			data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(3)), value~Region) #NOTE replace 'region' with a variable, and '3' with a range variable from input
 			print(data)
 			#data <- data.frame(write.table(gs_read(gs_data, ws = "US_literacy")))
 			#gs_data <-gs_url(input$gsheetURL)
