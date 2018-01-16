@@ -45,7 +45,7 @@ shinyUI(pageWithSidebar(
 				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
 				textInput("gsheetws", "Google Sheet worksheet name", value = "data", width = '80%'),
 				textInput("ggrouping", "What is the column header for the column(s) you want to group your data by (separate by a '+' sign, e.g. \"Region+Income\")?", value = "Region", width = '80%'),
-				textInput("gdataID", "What is the column header for the column with your data in it?", value = "Region", width = '80%')
+				textInput("gdataID", "What is the column header for the column with your data in it?", value = "2011", width = '80%')
 #				numericInput("gID", "What column number is the data in? (Column 'A' is '1', etc)", value = ", min = NA, max = NA, step = NA, width = '80%')
 				#,submitButton(text = "Apply Changes", icon = ("refresh"), width = '80%')
 			)
