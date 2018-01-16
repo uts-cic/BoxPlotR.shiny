@@ -33,8 +33,37 @@ dataM <- reactive({
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
 		} else if(input$dataInput==4){
 			#gs_auth(new_user=T)
-			gs_auth()
+			#gs_auth() #works fine on local, but not hosted shiny
+			gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
+			redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
+			access_type = "online", approval_prompt = "auto")
 			
+			##########################################################################################
+			  ## Make a button to link to Google auth screen
+			  ## If auth_code is returned then don't show login button
+			  output$loginButton <- renderUI({
+			    if (is.null(isolate(access_token()))) {
+			      tags$a("Authorize App",
+				     href = gs_webapp_auth_url(),
+				     class = "btn btn-default")
+			    } else {
+			      return()
+			    }
+			})
+			## Get auth code from return URL
+  			access_token  <- reactive({
+			## gets all the parameters in the URL. The auth code should be one of them.
+			pars <- parseQueryString(session$clientData$url_search)
+
+			if (length(pars$code) > 0) {
+			## extract the authorization code
+				gs_webapp_get_token(auth_code = pars$code)
+			} else {NULL}
+			})
+			
+			
+			
+			##########################################################################################
 			#gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
 			gs_data <- gs_url(input$gsheetURL)
 
