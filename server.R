@@ -43,8 +43,8 @@ dataM <- reactive({
 			
 			data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(5)), value~Region) #NOTE replace 'region' with a variable, and '3' with a range variable from input
 			
-			n <- ncol(data)
-			data <- data()[,-c(1,n)]
+			#n <- ncol(data)
+			#data <- data()[,-c(1,n)]
 			
 			#data <- data.frame(write.table(gs_read(gs_data, ws = "US_literacy")))
 			#data <- data.frame(na.omit(gs_read(input$gsheetURL, ws = input$gsheetws)))
