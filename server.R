@@ -33,7 +33,7 @@ dataM <- reactive({
 				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
 		} else if(input$dataInput==4){
 			#gs_auth(new_user=T)
-			#gs_auth()
+			gs_auth()
 			
 			#gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
 			gs_data <- gs_url(input$gsheetURL)
@@ -41,10 +41,8 @@ dataM <- reactive({
 			#data <- data.frame(gs_read(gs_data, ws = "US_literacy"))
 			data <- data.frame(gs_read(gs_data, ws = input$gsheetws))
 			
-			#var <- input$ggrouping
-			#groups <- paste0(input$ggrouping)
-			#measures <- paste0(input$gdataID)
-			data <- dcast(melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID)), as.formula(paste0("value~",input$ggrouping))) #NOTE replace 'region' with a variable, and '3' with a range variable from input
+			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(4)), value~Region)
+			data <- dcast(melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID)), as.formula(paste0("value~",input$ggrouping))) #NOTE replace 'region' with a variable, and '4' with a range variable from input
 			
 			n <- ncol(data)
 			data <- data[,-c(1,n)]
