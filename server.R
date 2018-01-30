@@ -10,7 +10,13 @@ shinyServer(function(input, output, session) {
 	source("boxplot_stats_Function.R")
 	source("BoxPlotR_functions.R")	
 	library(googlesheets)
-	
+  library(reshape2)
+  
+options("googlesheets.webapp.client_id" = )
+options("googlesheets.webapp.redirect_uri" = )
+options("googlesheets.webapp.client_secret" = )
+  
+
 	observe({
 		if (input$clearText_button == 0) return()
 		isolate({ updateTextInput(session, "myData", label = ",", value = "") })
@@ -34,19 +40,19 @@ dataM <- reactive({
 		} else if(input$dataInput==4){
 			#gs_auth(new_user=T)
 			#gs_auth() #works fine on local, but not hosted shiny
-			options("googlesheets.webapp.client_id" = "YOURIDHERE.apps.googleusercontent.com")
-			options("googlesheets.webapp.redirect_uri" = "https://sjgknight.shinyapps.io/boxplotr/")
-			
-			gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
-			redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
-			access_type = "online", approval_prompt = "auto")
+
+			#gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
+			 #                  redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
+			  #                 access_type = "online", approval_prompt = "auto")
 			##########################################################################################
 			  ## Make a button to link to Google auth screen
 			  ## If auth_code is returned then don't show login button
 			  output$loginButton <- renderUI({
 			    if (is.null(isolate(access_token()))) {
 			      tags$a("Authorize App",
-				     href = gs_webapp_auth_url(),
+				     href = gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
+				                               redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
+				                               access_type = "online", approval_prompt = "auto"),
 				     class = "btn btn-default")
 			    } else {
 			      return()
@@ -59,31 +65,52 @@ dataM <- reactive({
 
 			if (length(pars$code) > 0) {
 			## extract the authorization code
-				gs_webapp_get_token(auth_code = pars$code)
+				#gs_webapp_get_token(auth_code = pars$code)
+			  gs_webapp_get_token(auth_code = pars$code,
+			                      client_id = getOption("googlesheets.webapp.client_id"),
+			                      redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
+			                      client_secret = getOption("googlesheets.webapp.client_secret"))
 			} else {NULL}
 			})
+			#print(paste("!!!!!!!!!!!!!!!!!!parse_code: ", pars$code, "\n\n"))
+			#message(paste("!!!!!!!!!!!!!!!!!!queryString: ", session$clientData$url_search, "\n\n"))
+			#message(paste("!!!!!!!!!!!!!!!!!!access_token: ", access_token(), "\n\n"))
 			
 			
 			
 			##########################################################################################
-			#gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1s2j-evCGHbPaWuOU6QB9OarbmvRjVdg4OTC_GRYhTxo")
+			
+  		#gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1Ax5eBgNkrn6veF5TAVSKb2thUZnve9OGNjGGD6CF3IE/")
 			gs_data <- gs_url(input$gsheetURL)
 
-			#data <- data.frame(gs_read(gs_data, ws = "US_literacy"))
+			#data <- data.frame(gs_read(gs_data, ws = "Data"))
 			data <- data.frame(gs_read(gs_data, ws = input$gsheetws))
-						
-			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(4)), value~Region)
-			#data <- dcast(melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID)), as.formula(paste0("value~",input$ggrouping))) #NOTE replace 'region' with a variable, and '4' with a range variable from input
-			data <- melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID))
-			data$nID <- row.names(data)
-			data <- dcast(data, as.formula(paste0("value+nID~",input$ggrouping)))
 			
+			#IGNORE THESE TWO LINES:
+			#message(paste("!!!!!!!!!!!!!!!!data", data[3,3]))		
+			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(4)), value~Region)
+			#data <- melt(data, id.vars=c(input$ggrouping), measure.vars=c())
+			
+			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c("Y2011")), value~Region)
+			#data <- dcast(melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID)), as.formula(paste0("value~",input$ggrouping))) #NOTE replace 'region' with a variable, and '4' with a range variable from input
+			##data <- melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID))
+			data$nID <- row.names(data)
+		
+			#data <- dcast(data, as.formula(paste0("value+nID~",Region)))
+			#data <- dcast(data, as.formula(paste0("value+nID~",input$ggrouping)))
+      #dcast(test_melt, as.formula(paste0("value+nID~Region")))
+			#data <- reshape(data[c("nID","Region","Y2011")], idvar = "nID", timevar = "Region", direction = "wide")
+			data <- reshape(data[c("nID",input$ggrouping,input$gdataID)], idvar = "nID", timevar = input$ggrouping, direction = "wide")
+			
+      
 			#n <- ncol(data)
 			#data <- data[,-c(1:2,n)]
 			data <- data[,-c(1:2)]
+			data <- data.frame(data)
+			#data <- data[rowSums(is.na(data))!=ncol(data), ]
 
-			#data <- data.frame(write.table(gs_read(gs_data, ws = "US_literacy")))
-			#data <- data.frame(na.omit(gs_read(input$gsheetURL, ws = input$gsheetws)))
+			########################################################
+			########################################################
 			if (is.null(input$gsheetURL)) {return(NULL)}
 		} else { # To be looked into again - for special case when last column has empty entries in some rows
 			if(is.null(input$myData)) {return(NULL)} 
@@ -468,7 +495,4 @@ dataM <- reactive({
     }) ###
 
 })
-
-
-
 
