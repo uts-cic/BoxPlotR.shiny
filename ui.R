@@ -2,14 +2,14 @@
 #useShinyjs()
 
 shinyUI(pageWithSidebar(
-
+  
 	headerPanel("BoxPlotR: a web-tool for generation of box plots",
 		tags$head(tags$style(type="text/css", "label.radio { display: inline-block; }", ".radio input[type=\"radio\"] { float: none; }"),
 		tags$style(type="text/css", "select { max-width: 200px; }"),
 		tags$style(type="text/css", "textarea { max-width: 185px; }"),
 		tags$style(type="text/css", ".jslider { max-width: 200px; }"),
 		tags$style(type='text/css', ".well { max-width: 330px; }"),
-		tags$style(type='text/css', ".span4 { max-width: 330px; }")) 
+		tags$style(type='text/css', ".span4 { max-width: 330px; }"))
 	),
   
 	sidebarPanel(
@@ -33,6 +33,7 @@ shinyUI(pageWithSidebar(
 			),
 			conditionalPanel(condition="input.dataInput=='3'",
 				h5("Paste data below:"),
+				HTML('<p>On each line enter a row of data, with the groups separated by the delimeter, for example "1;3;5" is a row of data, with 3 groups, a new line starts a new row of data. Insert a delimeter without a value before it to have an empty/NA value</p>'),
 				tags$textarea(id="myData", rows=10, cols=5, ""),
 				actionButton('clearText_button','Clear data'),
 				radioButtons("fileSepP", "Separator:", list("Comma"=1,"Tab"=2,"Semicolon"=3))
@@ -41,12 +42,14 @@ shinyUI(pageWithSidebar(
 #),
 			conditionalPanel(condition="input.dataInput=='4'",
 				#ideally build in gs_auth so they can access private sheets
+			
 				h5("Do you have a google sheet with data in it?"),
+				HTML('<p>(You might need to refresh after you authenticate; files should be in the same format as the sample data)</p>'),
 				uiOutput("loginButton"),
-				textInput("gsheetURL", "Google Sheet URL", value = "", width = '80%'),
-				textInput("gsheetws", "Google Sheet worksheet name", value = "data", width = '80%'),
-				textInput("ggrouping", "What is the column header for the column(s) you want to group your data by (separate by a '+' sign, e.g. \"Region+Income\")?", value = "Region", width = '80%'),
-				textInput("gdataID", "What is the column header for the column with your data in it? (NOTE do not use numbers as column names, e.g. if the column is 1985, edit it in google to Y1985)", value = "2011", width = '80%')
+				textInput("gsheetURL", "Google Sheet URL", value = "https://docs.google.com/spreadsheets/d/1Ax5eBgNkrn6veF5TAVSKb2thUZnve9OGNjGGD6CF3IE/", width = '80%'),
+				textInput("gsheetws", "Google Sheet worksheet name", value = "Data", width = '80%'),
+				textInput("ggrouping", "What is the column header for the column(s) you want to group your data by (separate by a comma, e.g. \"Region,Income\")?", value = "Region", width = '80%'),
+				textInput("gdataID", "What is the column header for the column with your data in it? (NOTE do not use numbers as column names, e.g. if the column is 1985, edit it in google to Y1985)", value = "Y2011", width = '80%')
 #				numericInput("gID", "What column number is the data in? (Column 'A' is '1', etc)", value = ", min = NA, max = NA, step = NA, width = '80%')
 				#,submitButton(text = "Apply Changes", icon = ("refresh"), width = '80%')
 			)
