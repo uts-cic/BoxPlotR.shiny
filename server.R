@@ -16,7 +16,6 @@ options("googlesheets.webapp.client_id" = )
 options("googlesheets.webapp.redirect_uri" = )
 options("googlesheets.webapp.client_secret" = )
   
-
 	observe({
 		if (input$clearText_button == 0) return()
 		isolate({ updateTextInput(session, "myData", label = ",", value = "") })
@@ -31,88 +30,94 @@ dataM <- reactive({
 				data<-read.table("Boxplot_testData.txt", sep=",", header=TRUE)		
 			}
 		} else if(input$dataInput==2){
-			inFile <- input$upload
-			# Avoid error message while file is not uploaded yet
-			if (is.null(input$upload))  {return(NULL)}
-			# Get the separator
-			mySep<-switch(input$fileSepDF, '1'=",",'2'="\t",'3'=";", '4'="") #list("Comma"=1,"Tab"=2,"Semicolon"=3)
-				data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)
+		  #gs_auth(new_user=T)
+		  #gs_auth() #works fine on local, but not hosted shiny
+		  
+		  #gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
+		  #                  redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
+		  #                 access_type = "online", approval_prompt = "auto")
+		  ##########################################################################################
+		  ## Make a button to link to Google auth screen
+		  ## If auth_code is returned then don't show login button
+		  output$loginButton <- renderUI({
+		    
+		    if (is.null(isolate(access_token()))) {
+		      tags$a("Authorize App",
+		             href = gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
+		                                       redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
+		                                       access_type = "online", approval_prompt = "auto"),
+		             class = "btn btn-default")
+		    } else {
+		      return()
+		    }
+		  })
+		  ## Get auth code from return URL
+		  access_token  <- reactive({
+		    ## gets all the parameters in the URL. The auth code should be one of them.
+		    pars <- parseQueryString(session$clientData$url_search)
+		    
+		    if (length(pars$code) > 0) {
+		      ## extract the authorization code
+		      #gs_webapp_get_token(auth_code = pars$code)
+		      gs_webapp_get_token(auth_code = pars$code,
+		                          client_id = getOption("googlesheets.webapp.client_id"),
+		                          redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
+		                          client_secret = getOption("googlesheets.webapp.client_secret"))
+		    } else {NULL}
+		  })
+		  #print(paste("!!!!!!!!!!!!!!!!!!parse_code: ", pars$code, "\n\n"))
+		  #message(paste("!!!!!!!!!!!!!!!!!!queryString: ", session$clientData$url_search, "\n\n"))
+		  #message(paste("!!!!!!!!!!!!!!!!!!access_token: ", access_token(), "\n\n"))
+		  
+		  ##########################################################################################
+		  #observeEvent({
+		  # input$gloadsheet
+		  #input$gdataID
+		  # input$ggrouping
+		  #input$gsheetURL
+		  #input$gsheetws
+		  #},{
+		  input$gloadsheet
+		  
+		  isolate({
+		  
+		  #gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1Ax5eBgNkrn6veF5TAVSKb2thUZnve9OGNjGGD6CF3IE/")
+		  gs_data <- gs_url(input$gsheetURL)
+		  
+		  #data <- data.frame(gs_read(gs_data, ws = "Data"))
+		  data <- data.frame(gs_read(gs_data, ws = input$gsheetws))
+		  
+		  
+		  data$nID <- row.names(data)
+		  
+		  #data <- reshape(data[c("nID","Region","Y2011")], idvar = "nID", timevar = "Region", direction = "wide")
+		  data <- reshape(data[c("nID",input$ggrouping,input$gdataID)], idvar = "nID", timevar = input$ggrouping, direction = "wide")
+		  
+		  
+		  #n <- ncol(data)
+		  #data <- data[,-c(1:2,n)]
+		  data <- data[,-c(1:2)]
+		  data <- data.frame(data)
+		  
+		  })
+		  
+
+		  
+		  #data <- data[rowSums(is.na(data))!=ncol(data), ]
+		  
+		  ########################################################
+		  ########################################################
+		  if (is.null(input$gsheetURL)) {return(NULL)}
+		  
 		} else if(input$dataInput==4){
-			#gs_auth(new_user=T)
-			#gs_auth() #works fine on local, but not hosted shiny
-
-			#gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
-			 #                  redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
-			  #                 access_type = "online", approval_prompt = "auto")
-			##########################################################################################
-			  ## Make a button to link to Google auth screen
-			  ## If auth_code is returned then don't show login button
-			  output$loginButton <- renderUI({
-			    if (is.null(isolate(access_token()))) {
-			      tags$a("Authorize App",
-				     href = gs_webapp_auth_url(client_id = getOption("googlesheets.webapp.client_id"),
-				                               redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
-				                               access_type = "online", approval_prompt = "auto"),
-				     class = "btn btn-default")
-			    } else {
-			      return()
-			    }
-			})
-			## Get auth code from return URL
-  			access_token  <- reactive({
-			## gets all the parameters in the URL. The auth code should be one of them.
-			pars <- parseQueryString(session$clientData$url_search)
-
-			if (length(pars$code) > 0) {
-			## extract the authorization code
-				#gs_webapp_get_token(auth_code = pars$code)
-			  gs_webapp_get_token(auth_code = pars$code,
-			                      client_id = getOption("googlesheets.webapp.client_id"),
-			                      redirect_uri = getOption("googlesheets.webapp.redirect_uri"),
-			                      client_secret = getOption("googlesheets.webapp.client_secret"))
-			} else {NULL}
-			})
-			#print(paste("!!!!!!!!!!!!!!!!!!parse_code: ", pars$code, "\n\n"))
-			#message(paste("!!!!!!!!!!!!!!!!!!queryString: ", session$clientData$url_search, "\n\n"))
-			#message(paste("!!!!!!!!!!!!!!!!!!access_token: ", access_token(), "\n\n"))
-			
-			
-			
-			##########################################################################################
-			
-  		#gs_data <- gs_url("https://docs.google.com/spreadsheets/d/1Ax5eBgNkrn6veF5TAVSKb2thUZnve9OGNjGGD6CF3IE/")
-			gs_data <- gs_url(input$gsheetURL)
-
-			#data <- data.frame(gs_read(gs_data, ws = "Data"))
-			data <- data.frame(gs_read(gs_data, ws = input$gsheetws))
-			
-			#IGNORE THESE TWO LINES:
-			#message(paste("!!!!!!!!!!!!!!!!data", data[3,3]))		
-			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c(4)), value~Region)
-			#data <- melt(data, id.vars=c(input$ggrouping), measure.vars=c())
-			
-			#data <- dcast(melt(data, id.vars=c("Region"), measure.vars=c("Y2011")), value~Region)
-			#data <- dcast(melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID)), as.formula(paste0("value~",input$ggrouping))) #NOTE replace 'region' with a variable, and '4' with a range variable from input
-			##data <- melt(data, id.vars=c(input$ggrouping), measure.vars=c(input$gdataID))
-			data$nID <- row.names(data)
-		
-			#data <- dcast(data, as.formula(paste0("value+nID~",Region)))
-			#data <- dcast(data, as.formula(paste0("value+nID~",input$ggrouping)))
-      #dcast(test_melt, as.formula(paste0("value+nID~Region")))
-			#data <- reshape(data[c("nID","Region","Y2011")], idvar = "nID", timevar = "Region", direction = "wide")
-			data <- reshape(data[c("nID",input$ggrouping,input$gdataID)], idvar = "nID", timevar = input$ggrouping, direction = "wide")
-			
-      
-			#n <- ncol(data)
-			#data <- data[,-c(1:2,n)]
-			data <- data[,-c(1:2)]
-			data <- data.frame(data)
-			#data <- data[rowSums(is.na(data))!=ncol(data), ]
-
-			########################################################
-			########################################################
-			if (is.null(input$gsheetURL)) {return(NULL)}
-		} else { # To be looked into again - for special case when last column has empty entries in some rows
+  		  inFile <- input$upload
+  		  # Avoid error message while file is not uploaded yet
+  		  if (is.null(input$upload))  {return(NULL)}
+  		  # Get the separator
+  		  mySep<-switch(input$fileSepDF, '1'=",",'2'="\t",'3'=";", '4'="") #list("Comma"=1,"Tab"=2,"Semicolon"=3)
+  		  data<-read.table(inFile$datapath, sep=mySep, header=TRUE, fill=TRUE)		  
+  		  
+  	} else { # To be looked into again - for special case when last column has empty entries in some rows
 			if(is.null(input$myData)) {return(NULL)} 
 			tmp<-matrix(strsplit(input$myData, "\n")[[1]])
 			mySep<-switch(input$fileSepP, '1'=",",'2'="\t",'3'=";")
@@ -433,7 +438,7 @@ dataM <- reactive({
 			colnames(M)<-colnames(dataM())
 		}
 		M
-	})
+	}, include.rownames = T)
 	
 	# *** Print figure legend ***
 	output$FigureLegend <- renderPrint({
